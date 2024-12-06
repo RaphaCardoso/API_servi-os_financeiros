@@ -9,6 +9,7 @@
   "author": "Raphael Cardoso",
   "license": "ISC",
   "dependencies": {
+    "api_servi-os_financeiros": "file:",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.7",
     "express": "^4.21.1",

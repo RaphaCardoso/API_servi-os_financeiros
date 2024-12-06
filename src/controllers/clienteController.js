@@ -1,12 +1,11 @@
 const clienteService = require('../services/clienteService');
 
-const bcrypt = require('bcryptjs');
-
 const clienteController = {
 
     create: async (req, res) => {
         try {
-            const cliente = await clienteService.create(req)
+
+            const cliente = await clienteService.create(req);
 
             return res.status(201).json({
                 code: "201",
@@ -17,19 +16,27 @@ const clienteController = {
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente._id}`,
+                        href: `/cliente/buscar/${cliente._id}`,
                         method: "GET"
                     },
                     update: {
-                        href: `/cliente/${cliente._id}`,
+                        href: `/cliente/atualizar/${cliente._id}`,
                         method: "PUT"
+                    },
+                    delete: {
+                        href: `/cliente/deletar/${cliente._id}`,
+                        method: "Delete"
+                    },
+                    login: {
+                        href: `/cliente/login/`,
+                        method: "POST"
                     }
 
                 }
             })
 
         } catch (error) {
-            
+
         }
 
     },
