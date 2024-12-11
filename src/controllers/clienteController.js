@@ -6,10 +6,10 @@ const clienteController = {
 
     create: async (req, res) => {
         try {
+
             const cliente = await clienteService.create(req.body);
 
             console.log(cliente.id);
-
 
             return res.status(201).json({
                 code: "201",
@@ -36,6 +36,7 @@ const clienteController = {
             })
 
         } catch (error) {
+
             return res.status(500).json({
                 code: "201",
                 method: "POST",
@@ -45,6 +46,7 @@ const clienteController = {
                     "Dados enviados incorretamente!"
                 ]
             })
+
         }
 
     },

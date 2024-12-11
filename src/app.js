@@ -3,7 +3,6 @@ const express = require('express');
 const { sequelize } = require('./models');
 const router = require('./routers/router');
 
-
 const app = express();
 
 app.use(express.json());
@@ -24,3 +23,4 @@ app.listen(PORT, () => {
     console.log(`Running on http://${PORT}`);
     console.log('----------------------------');
 });
+

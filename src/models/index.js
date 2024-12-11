@@ -20,3 +20,4 @@ fs.readdirSync(__dirname)
 sequelize.sync();
 
 module.exports = { sequelize, ...db }
+
