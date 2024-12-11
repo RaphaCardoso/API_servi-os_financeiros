@@ -4,6 +4,8 @@ const router = Router();
 
 const clienteRoutes = require('./cliente/clienteRotas');
 
+// router.get('/', administradorRoutes);
+
 router.use('/cliente', clienteRoutes);
 
 
