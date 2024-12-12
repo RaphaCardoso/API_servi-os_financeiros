@@ -1,9 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-
-
-const Conta = sequelize.define('conta', {
+const conta = sequelize.define('conta', {
     ID_Cliente: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -12,6 +10,10 @@ const Conta = sequelize.define('conta', {
     Saldo: {
         type: DataTypes.DOUBLE,
         allowNull: false,
-    }
-})
+    }// para armazenar a hora que foi criada e alterada
+}, {
+    timestamps: true // para armazenar a hora que foi criada e alterada
+});
+
+module.exports = conta;
 
