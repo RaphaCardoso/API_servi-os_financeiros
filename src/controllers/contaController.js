@@ -1,32 +1,32 @@
-const clienteService = require('../services/clienteService');
+const contaService = require('../services/contaService');
 
 // const bcrypt = require('bcryptjs');
 
-const clienteController = {
+const contaController = {
 
     create: async (req, res) => {
         try {
 
-            const cliente = await clienteService.create(req.body);
+            const conta = await contaService.create(req.body);
 
             return res.status(201).json({
                 code: "201",
                 method: "POST",
-                message: "Cliente criado com sucesso!",
-                cliente: {
-                    cliente
+                message: "conta criado com sucesso!",
+                conta: {
+                    conta
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "GET"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "DELETE"
                     }
 
@@ -38,7 +38,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "POST",
-                message: "Não foi possível criar Cliente!",
+                message: "Não foi possível criar conta!",
                 error: error,
                 cause: [
                     "Dados enviados incorretamente!"
@@ -54,24 +54,24 @@ const clienteController = {
 
             const { id } = req.params;
 
-            const cliente = await clienteService.getOne(id);
+            const conta = await contaService.getOne(id);
 
-            if (cliente.Error) {
+            if (conta.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "GET",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["conta não foi encontrado!", conta, "Digite um ID válido!"],
                     _links: {
                         create: {
-                            href: `/cliente/`,
+                            href: `/conta/`,
                             method: "POST"
                         },
                         update: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "PUT"
                         },
                         delete: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "DELETE"
                         }
 
@@ -82,21 +82,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "GET",
-                message: "Cliente encontrado com sucesso!",
-                cliente: {
-                    cliente
+                message: "conta encontrado com sucesso!",
+                conta: {
+                    conta
                 },
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/conta/`,
                         method: "POST"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "DELETE"
                     }
 
@@ -108,7 +108,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "GET",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar conta!",
                 error: error
             });
 
@@ -119,30 +119,30 @@ const clienteController = {
     getAll: async (req, res) => {
         try {
 
-            const clientes = await clienteService.getAll();
+            const contas = await contaService.getAll();
 
             return res.status(201).json({
                 code: "200",
                 method: "GET",
-                message: "Clientes encontrados com sucesso!",
-                cliente: {
-                    clientes
+                message: "contas encontrados com sucesso!",
+                conta: {
+                    contas
                 },
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/conta/`,
                         method: "POST"
                     },
                     self: {
-                        href: `/cliente/:id`,
+                        href: `/conta/:id`,
                         method: "GET"
                     },
                     update: {
-                        href: `/cliente/:id`,
+                        href: `/conta/:id`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/:id`,
+                        href: `/conta/:id`,
                         method: "DELETE"
                     }
 
@@ -154,18 +154,18 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "GET",
-                message: "Não foi possível encotrar clientes!",
+                message: "Não foi possível encotrar contas!",
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/conta/`,
                         method: "POST"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "DELETE"
                     }
 
@@ -180,28 +180,28 @@ const clienteController = {
 
             const { id } = req.params;
             const data = {
-                Nome_Cliente: req.body.Nome_Cliente,
+                Nome_conta: req.body.Nome_conta,
                 Email: req.body.Email
             }
 
-            const cliente = await clienteService.update(id, data);
+            const conta = await contaService.update(id, data);
 
-            if (cliente.Error) {
+            if (conta.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "PUT",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["conta não foi encontrado!", conta, "Digite um ID válido!"],
                     _links: {
                         self: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "GET"
                         },
                         create: {
-                            href: `/cliente/`,
+                            href: `/conta/`,
                             method: "POST"
                         },
                         delete: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "DELETE"
                         }
 
@@ -212,21 +212,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "PUT",
-                message: "Cliente atualizado com sucesso!",
-                cliente: {
-                    cliente
+                message: "conta atualizado com sucesso!",
+                conta: {
+                    conta
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "GET"
                     },
                     create: {
-                        href: `/cliente/`,
+                        href: `/conta/`,
                         method: "POST"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "DELETE"
                     }
 
@@ -237,7 +237,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "PUT",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar conta!",
                 error: error
             });
 
@@ -249,24 +249,24 @@ const clienteController = {
         try {
             const { id } = req.params;
 
-            const cliente = await clienteService.delete(id);
+            const conta = await contaService.delete(id);
 
-            if (cliente.Error) {
+            if (conta.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "DELETE",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["conta não foi encontrado!", conta, "Digite um ID válido!"],
                     _links: {
                         self: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "GET"
                         },
                         create: {
-                            href: `/cliente/`,
+                            href: `/conta/`,
                             method: "POST"
                         },
                         update: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/conta/${conta.id}`,
                             method: "PUT"
                         }
                     }
@@ -276,21 +276,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "DELETE",
-                message: "Cliente deletado com sucesso!",
-                cliente: {
-                    cliente
+                message: "conta deletado com sucesso!",
+                conta: {
+                    conta
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "GET"
                     },
                     create: {
-                        href: `/cliente/`,
+                        href: `/conta/`,
                         method: "POST"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/conta/${conta.id}`,
                         method: "DELETE"
                     }
 
@@ -302,7 +302,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "DELETE",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar conta!",
                 error: error
             });
         }
@@ -316,4 +316,4 @@ const clienteController = {
 
 };
 
-module.exports = clienteController;
+module.exports = contaController;

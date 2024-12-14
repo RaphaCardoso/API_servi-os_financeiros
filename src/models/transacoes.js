@@ -1,10 +1,18 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const conta = require('./conta');
 
-const transacoes = sequelize.define('transacoes', {
+const transacao = sequelize.define('transacoes', {
 
-    // ID_Conta chave estrangeira
-    // Tipo de Conta ( Corrente, Poupança, Salário, Mista, Digital, Universitária, Conjunta, Solidária )
+    ID_Conta: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: conta,
+            key: 'id'
+        },
+        allowNull: false,
+        onDelete: 'CASCADE'
+    },
     Conta: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -29,4 +37,4 @@ const transacoes = sequelize.define('transacoes', {
 );
 
 
-module.exports = transacoes;
+module.exports = transacao;

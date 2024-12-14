@@ -1,9 +1,15 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
+const cliente = require('./cliente');
 
 const conta = sequelize.define('conta', {
     ID_Cliente: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
+        references: {
+            model: cliente,
+            key: 'id'
+        },
+        onDelete: 'CASCADE',
         allowNull: false,
     },
 

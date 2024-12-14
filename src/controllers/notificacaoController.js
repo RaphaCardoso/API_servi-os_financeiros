@@ -1,32 +1,32 @@
-const clienteService = require('../services/clienteService');
+const notificacaoService = require('../services/notificacaoService');
 
 // const bcrypt = require('bcryptjs');
 
-const clienteController = {
+const notificacaoController = {
 
     create: async (req, res) => {
         try {
 
-            const cliente = await clienteService.create(req.body);
+            const notificacao = await notificacaoService.create(req.body);
 
             return res.status(201).json({
                 code: "201",
                 method: "POST",
-                message: "Cliente criado com sucesso!",
-                cliente: {
-                    cliente
+                message: "notificacao criado com sucesso!",
+                notificacao: {
+                    notificacao
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "GET"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "DELETE"
                     }
 
@@ -38,7 +38,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "POST",
-                message: "Não foi possível criar Cliente!",
+                message: "Não foi possível criar notificacao!",
                 error: error,
                 cause: [
                     "Dados enviados incorretamente!"
@@ -54,24 +54,24 @@ const clienteController = {
 
             const { id } = req.params;
 
-            const cliente = await clienteService.getOne(id);
+            const notificacao = await notificacaoService.getOne(id);
 
-            if (cliente.Error) {
+            if (notificacao.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "GET",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["notificacao não foi encontrado!", notificacao, "Digite um ID válido!"],
                     _links: {
                         create: {
-                            href: `/cliente/`,
+                            href: `/notificacao/`,
                             method: "POST"
                         },
                         update: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "PUT"
                         },
                         delete: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "DELETE"
                         }
 
@@ -82,21 +82,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "GET",
-                message: "Cliente encontrado com sucesso!",
-                cliente: {
-                    cliente
+                message: "notificacao encontrado com sucesso!",
+                notificacao: {
+                    notificacao
                 },
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/notificacao/`,
                         method: "POST"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "DELETE"
                     }
 
@@ -108,7 +108,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "GET",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar notificacao!",
                 error: error
             });
 
@@ -119,30 +119,30 @@ const clienteController = {
     getAll: async (req, res) => {
         try {
 
-            const clientes = await clienteService.getAll();
+            const notificacaos = await notificacaoService.getAll();
 
             return res.status(201).json({
                 code: "200",
                 method: "GET",
-                message: "Clientes encontrados com sucesso!",
-                cliente: {
-                    clientes
+                message: "notificacaos encontrados com sucesso!",
+                notificacao: {
+                    notificacaos
                 },
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/notificacao/`,
                         method: "POST"
                     },
                     self: {
-                        href: `/cliente/:id`,
+                        href: `/notificacao/:id`,
                         method: "GET"
                     },
                     update: {
-                        href: `/cliente/:id`,
+                        href: `/notificacao/:id`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/:id`,
+                        href: `/notificacao/:id`,
                         method: "DELETE"
                     }
 
@@ -154,18 +154,18 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "GET",
-                message: "Não foi possível encotrar clientes!",
+                message: "Não foi possível encotrar notificacaos!",
                 _links: {
                     create: {
-                        href: `/cliente/`,
+                        href: `/notificacao/`,
                         method: "POST"
                     },
                     update: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "PUT"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "DELETE"
                     }
 
@@ -180,28 +180,28 @@ const clienteController = {
 
             const { id } = req.params;
             const data = {
-                Nome_Cliente: req.body.Nome_Cliente,
+                Nome_notificacao: req.body.Nome_notificacao,
                 Email: req.body.Email
             }
 
-            const cliente = await clienteService.update(id, data);
+            const notificacao = await notificacaoService.update(id, data);
 
-            if (cliente.Error) {
+            if (notificacao.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "PUT",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["notificacao não foi encontrado!", notificacao, "Digite um ID válido!"],
                     _links: {
                         self: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "GET"
                         },
                         create: {
-                            href: `/cliente/`,
+                            href: `/notificacao/`,
                             method: "POST"
                         },
                         delete: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "DELETE"
                         }
 
@@ -212,21 +212,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "PUT",
-                message: "Cliente atualizado com sucesso!",
-                cliente: {
-                    cliente
+                message: "notificacao atualizado com sucesso!",
+                notificacao: {
+                    notificacao
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "GET"
                     },
                     create: {
-                        href: `/cliente/`,
+                        href: `/notificacao/`,
                         method: "POST"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "DELETE"
                     }
 
@@ -237,7 +237,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "PUT",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar notificacao!",
                 error: error
             });
 
@@ -249,24 +249,24 @@ const clienteController = {
         try {
             const { id } = req.params;
 
-            const cliente = await clienteService.delete(id);
+            const notificacao = await notificacaoService.delete(id);
 
-            if (cliente.Error) {
+            if (notificacao.Error) {
                 return res.status(404).json({
                     code: "404",
                     method: "DELETE",
-                    message: ["Cliente não foi encontrado!", cliente, "Digite um ID válido!"],
+                    message: ["notificacao não foi encontrado!", notificacao, "Digite um ID válido!"],
                     _links: {
                         self: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "GET"
                         },
                         create: {
-                            href: `/cliente/`,
+                            href: `/notificacao/`,
                             method: "POST"
                         },
                         update: {
-                            href: `/cliente/${cliente.id}`,
+                            href: `/notificacao/${notificacao.id}`,
                             method: "PUT"
                         }
                     }
@@ -276,21 +276,21 @@ const clienteController = {
             return res.status(201).json({
                 code: "200",
                 method: "DELETE",
-                message: "Cliente deletado com sucesso!",
-                cliente: {
-                    cliente
+                message: "notificacao deletado com sucesso!",
+                notificacao: {
+                    notificacao
                 },
                 _links: {
                     self: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "GET"
                     },
                     create: {
-                        href: `/cliente/`,
+                        href: `/notificacao/`,
                         method: "POST"
                     },
                     delete: {
-                        href: `/cliente/${cliente.id}`,
+                        href: `/notificacao/${notificacao.id}`,
                         method: "DELETE"
                     }
 
@@ -302,7 +302,7 @@ const clienteController = {
             return res.status(500).json({
                 code: "500",
                 method: "DELETE",
-                message: "Não foi possível encontrar Cliente!",
+                message: "Não foi possível encontrar notificacao!",
                 error: error
             });
         }
@@ -316,4 +316,4 @@ const clienteController = {
 
 };
 
-module.exports = clienteController;
+module.exports = notificacaoController;
