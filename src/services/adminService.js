@@ -47,7 +47,7 @@ const adminService = {
                 return error;
             }
 
-            return await Admin.update(data);
+            return await admin.update(data);
 
         } catch (error) {
             console.error(error);
@@ -64,7 +64,7 @@ const adminService = {
                 return error;
             }
 
-            return await Admin.destroy();
+            return await admin.destroy();
 
         } catch (error) {
             console.error(error);

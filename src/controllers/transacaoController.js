@@ -180,8 +180,11 @@ const transacaoController = {
 
             const { id } = req.params;
             const data = {
-                Nome_transacao: req.body.Nome_transacao,
-                Email: req.body.Email
+                ID_Conta: req.body.ID_Conta,
+                Conta: req.body.Conta,
+                Transacao: req.body.Transacao,
+                Valor: req.body.Valor,
+                Data_Transacao: req.body.Data_Transacao
             }
 
             const transacao = await transacaoService.update(id, data);

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 
-const adminstradores = sequelize.define('administradores', {
+const admin = sequelize.define('administradores', {
     nome: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -23,4 +23,4 @@ const adminstradores = sequelize.define('administradores', {
     timestamps: true // para armazenar a hora que foi criada e alterada
 });
 
-module.exports = adminstradores;
+module.exports = admin;

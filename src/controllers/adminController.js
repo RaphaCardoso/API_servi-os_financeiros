@@ -180,9 +180,12 @@ const adminController = {
 
             const { id } = req.params;
             const data = {
-                Nome_admin: req.body.Nome_admin,
-                Email: req.body.Email
+                nome: req.body.nome,
+                email: req.body.email,
+                idade: req.body.idade,
+                senha: req.body.senha
             }
+
 
             const admin = await adminService.update(id, data);
 

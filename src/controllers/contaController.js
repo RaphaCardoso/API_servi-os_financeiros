@@ -180,8 +180,8 @@ const contaController = {
 
             const { id } = req.params;
             const data = {
-                Nome_conta: req.body.Nome_conta,
-                Email: req.body.Email
+                ID_Cliente: req.body.ID_Cliente,
+                Saldo: req.body.Saldo
             }
 
             const conta = await contaService.update(id, data);

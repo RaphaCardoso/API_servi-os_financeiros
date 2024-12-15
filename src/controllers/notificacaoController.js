@@ -180,8 +180,9 @@ const notificacaoController = {
 
             const { id } = req.params;
             const data = {
-                Nome_notificacao: req.body.Nome_notificacao,
-                Email: req.body.Email
+                ID_Cliente: req.body.ID_Cliente,
+                Mensagem: req.body.Mensagem,
+                Data_Notificacao: req.body.Data_Notificacao
             }
 
             const notificacao = await notificacaoService.update(id, data);
